@@ -1,0 +1,42 @@
+		//Create
+		User user1 = new User();
+		user1.setName("Ram Babu");
+		user1.setCity("Chandannagar");
+		user1.setStatus("Assigned to Internal project");
+		
+		User user2 = new User();
+		user2.setName("Swarnavo Pal");
+		user2.setCity("Chandannagar");
+		user2.setStatus("Unassigned");
+		
+		List<User> users =  List.of(user1,user2);
+		Iterable<User> result =  userrepository.saveAll(users);
+		result.forEach(user->{
+			System.out.println(user);
+		});	
+		
+		//Update
+		Optional<User> optional = userrepository.findById(52);
+		User user = optional.get();
+		user.setName("RamBilas Babu");
+		User res = userrepository.save(user);
+		System.out.println(res);
+		
+		Optional<User> optional = userrepository.findById(52);
+		User user = optional.get();
+		System.out.println(user);
+		
+		//Read
+		Iterable<User> itr = userrepository.findAll();
+		itr.forEach(user1->{
+			System.out.println(user1);
+		});
+		
+		//Delete
+		userrepository.deleteById(52);
+		Iterable<User> itr = userrepository.findAll();
+		itr.forEach(user1->{
+			System.out.println(user1);
+		});
+		
+		userrepository.deleteAll();
